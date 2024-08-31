@@ -3,9 +3,10 @@ using auth_server.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<AppDbContext>(
-    options => options.UseNpgsql("Server=127.0.0.1;Port=5432;Database=auth;User Id=postgres;Password=YY2i#;"));
+    options => options.UseNpgsql(connectionString));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
